@@ -1,2 +1,30 @@
-<!--pages/goods_list/index.wxml-->
-<text>pages/goods_list/index.wxml</text>
+<!-- pages/goods_list/index.wxml -->
+<SearchInput></SearchInput>
+<!-- 监听自定义事件 -->
+<Tabs tabs="{{tabs}}" bindtabsItemChange="handleTabsItenChange">
+    <block wx:if="{{tabs[0].isActive}}">
+        <view class="firsr_tab">
+         <navigator class="goods_item"
+         wx:for="{{goods_list}}"
+         wx:key="goods_id"
+         url="/pages/goods_detail/index?goods_id={{item.goods_id}}"
+         style=" display: flex; border-bottom: 1px solid #ccc;"
+         >
+          <!-- 左侧 图片容器 -->
+          <view class="goods_img_wrap" style="flex: 2; display: flex; justify-content: center; align-items: center;" >
+          <image style=" width: 70%;"  src="{{item.goods_small_logo?item.goods_small_logo:'http://image2.suning.cn/uimg/b2c/newcatentries/0000000000-000000000826147951_1_400x400.jpg'}}" mode="widthFix">
+              
+          </image>
+          </view>
+          <!-- 右侧 商品容器 -->
+          <view class="goods_info_wrap" style="flex: 3;display: flex; flex-direction: column;justify-content: space-around;">
+           <view class="goods_name" style=" display: -webkit-box; overflow: hidden;-webkit-box-orient: vertical;-webkit-line-clamp: 2;">{{item.goods_name}}</view>
+           <view class="goods_price" style="color: var(--themeColor);font-size: 32rpx;">￥{{item.goods_price}}</view>
+          </view>
+
+         </navigator>
+        </view>
+    </block>
+    <block wx:elif="{{tabs[1].isActive}}">1</block>
+    <block wx:elif="{{tabs[2].isActive}}">2</block>
+</Tabs>
